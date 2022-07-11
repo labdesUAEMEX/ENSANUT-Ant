@@ -1,0 +1,17 @@
+require(questionr)
+require(dplyr)
+#Situación conyugal
+scm <- muj %>%
+  as_tibble() %>%
+  mutate(c= case_when(conyugal==1 | conyugal==6 ~1,
+                      conyugal>=2 & conyugal<=5 ~2,
+                      conyugal==7 ~3))
+table(scm$c)
+wtd.table(scm$c,weights = scm$FACTOR)
+sch <- hom %>%
+  as_tibble() %>%
+  mutate(c= case_when(conyugal==1 | conyugal==6 ~1,
+                      conyugal>=2 & conyugal<=5 ~2,
+                      conyugal==7 ~3))
+table(sch$c)
+wtd.table(sch$c,weights = sch$FACTOR)
