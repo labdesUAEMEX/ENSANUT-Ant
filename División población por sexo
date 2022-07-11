@@ -1,5 +1,12 @@
 require(questionr)
 require(dplyr)
+# Tablas por sexo
+muj <- ant %>%
+  as_tibble() %>%
+  filter(SEXO==2)
+hom <- ant %>%
+  as_tibble() %>%
+  filter(SEXO==1)
 # Sexo
 sex <- ant %>%
   as_tibble() %>%
