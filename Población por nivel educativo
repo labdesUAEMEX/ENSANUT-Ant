@@ -1,0 +1,19 @@
+require(questionr)
+require(dplyr)
+#Nivel educativo
+nm <- muj %>%
+  as_tibble() %>%
+  mutate(n=case_when(NIVEL<=1 ~1,
+                     NIVEL==2 | NIVEL==3 | NIVEL==5 | NIVEL==6 ~2,
+                     NIVEL==4 | NIVEL==7 ~3,
+                     NIVEL>=8 ~4))
+table(nm$n)
+wtd.table(nm$n,weights = nm$FACTOR)
+nh <- hom %>%
+  as_tibble() %>%
+  mutate(n=case_when(NIVEL<=1 ~1,
+                     NIVEL==2 | NIVEL==3 | NIVEL==5 | NIVEL==6 ~2,
+                     NIVEL==4 | NIVEL==7 ~3,
+                     NIVEL>=8 ~4))
+table(nh$n)
+wtd.table(nh$n,weights = nh$FACTOR)
