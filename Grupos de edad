@@ -1,0 +1,21 @@
+require(questionr)
+require(dplyr)
+#Grupo de edad
+gem <- muj %>%
+  as_tibble() %>%
+  mutate(g=case_when(EDAD>=20 & EDAD<=29 ~1,
+                     EDAD>=30 & EDAD<=39 ~2,
+                     EDAD>=40 & EDAD<=49 ~3,
+                     EDAD>=50 & EDAD<=59 ~4,
+                     EDAD>=60 ~5))
+table(gem$g)
+wtd.table(gem$g,weights = gem$FACTOR)
+geh <- hom %>%
+  as_tibble() %>%
+  mutate(g=case_when(EDAD>=20 & EDAD<=29 ~1,
+                     EDAD>=30 & EDAD<=39 ~2,
+                     EDAD>=40 & EDAD<=49 ~3,
+                     EDAD>=50 & EDAD<=59 ~4,
+                     EDAD>=60 ~5))
+table(geh$g)
+wtd.table(geh$g,weights = geh$FACTOR)
