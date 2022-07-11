@@ -1,0 +1,9 @@
+require(questionr)
+require(dplyr)
+# Sexo
+sex <- ant %>%
+  as_tibble() %>%
+  mutate(s=case_when(SEXO==1 ~1,
+                     SEXO==2 ~2))
+table(sex$s)
+wtd.table(sex$s,weights = sex$FACTOR)
